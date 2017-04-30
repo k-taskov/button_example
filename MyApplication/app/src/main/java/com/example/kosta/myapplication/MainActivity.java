@@ -1,11 +1,10 @@
 package com.example.kosta.myapplication;
 
-import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SwitchCompat;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,32 +14,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-    // Example of a call to a native method
-    TextView tv = (TextView) findViewById(R.id.sample_text);
-    tv.setText(stringFromJNI());
-//comment1
-        Button button1 = (Button) findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
+        Switch toggleButton = (Switch) findViewById(R.id.toggleButton);
+
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                // code for what to do when button1 clicked
-                Toast.makeText(MainActivity.this, "Pressed!", Toast.LENGTH_LONG).show();
+            public void onCheckedChanged(final CompoundButton buttonView, final boolean isChecked) {
+                if (isChecked) {
+                    // tuk e koda za kakvo da se pravi ako usera natisne "on"
+                    Toast.makeText(MainActivity.this, "Switch on", Toast.LENGTH_SHORT).show();
+                } else {
+                    // tuk e koda za kakvo da se pravi ako usera natisne "off"
+                    Toast.makeText(MainActivity.this, "Switch off", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
-
-    Button button2 = (Button) findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            // code for what to do when button1 clicked
-            Toast.makeText(MainActivity.this, "Pressed!", Toast.LENGTH_LONG).show();
-        }
-    });
-}
-
-
-
 
     /**
      * A native method that is implemented by the 'native-lib' native library,
