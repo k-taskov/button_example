@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     // Example of a call to a native method
     TextView tv = (TextView) findViewById(R.id.sample_text);
     tv.setText(stringFromJNI());
-
+//comment1
         Button button1 = (Button) findViewById(R.id.button1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
